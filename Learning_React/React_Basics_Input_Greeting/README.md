@@ -31,4 +31,4 @@ The goal of this mini-project is to help beginners understand how React componen
 ## 🚀 How to Run the Project
 1. **Clone this repository**:
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/Ayoub-glitsh/your-repo-name.git
