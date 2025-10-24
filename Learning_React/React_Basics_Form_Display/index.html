@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      .vue{
+        background-color: green;
+        color:white;
+        height:20vh;
+        width:30vw;
+        
+      }
+      .container{
+        border: 1px black solid;
+        margin-inline:auto;
+        width:20vw;
+        height:40vh;
+        padding:20px;
+      }
+      label{
+        margin-inline: auto;
+      }
+      input{
+        width:80%;
+        margin-inline:auto;
+        display: block;
+        border-radius: 4px;
+        border-width:0.5px;
+
+      }
+      button{
+        display: block;
+        margin-inline:auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function InputAndP(){
+        const [inputText, setInputText] = React.useState("")
+        function Typing01(e){
+          setInputText(e.target.value)
+        }
+        const [inputEmail, setInputEmail] = React.useState("")
+        function Typing02(e){
+          setInputEmail(e.target.value)
+        }
+        const [inputTextpass, setInputTextpass] = React.useState("")
+        function Typing03(e){
+          setInputTextpass(e.target.value)
+        }
+        const [inputTextage, setInputTextage] = React.useState("")
+        function Typing04(e){
+          setInputTextage(e.target.value)
+        }
+
+        
+        return(
+          <>
+          <div className="container" >
+          <label>Nom Complet : </label> <br/>
+          <input type="text" onChange={Typing01} value= {inputText} placeholder="Type your name"/>
+          <br/>Email :<br/>
+          <input type="email" onChange={Typing02} value= {inputEmail} placeholder="Type your Email"/>
+          <br/>Mot de passe:<br/>
+          <input type="password"  onChange={Typing03} value= {inputTextpass} placeholder="Type your password"/>
+          <br/>age :<br/>
+          <input type="number"   onChange={Typing04} value= {inputTextage} placeholder="Type your age"/> <br/>
+          </div>
+          <p className="vue">
+            <p>nom : {inputText}</p>
+            <p>Email : {inputEmail}</p>
+            <p>Password : {inputTextpass}</p>
+            <p>Age : {inputTextage}</p>
+          </p>
+          </>
+        )
+      }
+
+      function App(){
+        return(
+          <>
+          <InputAndP/>
+          </>
+        )
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
