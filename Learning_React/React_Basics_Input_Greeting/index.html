@@ -1,0 +1,57 @@
+je veux ajouter un projcet dans mon repo je te donne le code et donne le fichier readme : <!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      .vue{
+        background-color: black;
+        color:white;
+        height:20vh;
+        width:30vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function InputAndP(){
+        const [inputText, setInputText] = React.useState("")
+        function Typing(e){
+          setInputText(e.target.value)
+        }
+
+        function ShowExample(){
+          setInputText("Ayoub")
+        }
+        function ResetMyText(){
+          setInputText("")
+        }
+        return(
+          <>
+          <input type="text" onChange={Typing} value= {inputText} placeholder="Type your name"/>
+          <button onClick={ResetMyText}>Reset</button>
+          <button onClick={ShowExample}>Example</button>
+          <p className="vue">{"Bonjour "+inputText}</p>
+          </>
+        )
+      }
+
+      function App(){
+        return(
+          <>
+          <InputAndP/>
+          </>
+        )
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
