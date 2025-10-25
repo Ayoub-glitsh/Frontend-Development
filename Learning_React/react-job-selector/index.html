@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+    
+      
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      
+      function Select(){
+        const [work,setWork] = React.useState("")
+        const Works = ["developer","designer","devops engineer"]
+        return(
+          <>
+            <h1>Selectionnez votre metier</h1>
+            <select onChange={(e)=> setWork(e.target.value)} >
+              {Works.map((item,index)=>{
+                  return (<option value={item} key={index}>{item}</option>)
+                  
+                  
+              })}
+              
+            </select>
+            {work.length !== 0 && <p>votre metier est : {work}</p>}
+
+            <button onClick={()=>{setWork("")}}>Reset</button>
+            
+          </>
+        )
+      }
+
+      function App() {
+        return <Select />;
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
