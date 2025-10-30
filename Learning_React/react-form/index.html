@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      body{
+        background-color:rgb(215, 241, 241);
+      }
+      .container{
+        width:35vw;
+        background-color: white;
+        margin-inline:auto;
+        margin-top: 10vh ;
+        border-radius: 4vh;
+        padding-bottom: 3vh;
+      }
+      h1{
+        text-align: center;
+        padding-top: 3vh;
+      }
+      .classInput{
+        width:80%;
+        margin-inline:auto;
+        margin-bottom: 3vh;
+      }
+      input:not(.inh) ,select{
+        width: 100%;
+        height:4vh;
+        border-radius: 1vh;
+        border-width:0.5px;
+      }
+      button{
+        background-color:green;
+        color:white;
+        padding:2vh;
+        border-radius:1vh;
+        margin-inline:auto;
+        border:none;
+        display: block;
+      }
+      .flex{
+        display: flex;
+        justify-content: space-evenly;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+
+
+
+
+      function Formulaire(){
+        const [Identifiant,setIdentifiant] = React.useState("")
+        const [DateNaissance,setDateNaissance] = React.useState("")
+        const [Ville,setVille] = React.useState("")
+        const [MesLoisirs,setMesLoisirs] = React.useState([])
+        const [IsClicked, setIsClicked] = React.useState(false)
+
+        const handleChange = (event) => {
+        const value = event.target.value;
+        if (event.target.checked) {
+          setMesLoisirs([...MesLoisirs, value]); // ajoute si coché
+        } else {
+          setMesLoisirs(MesLoisirs.filter(l => l !== value)); // retire si décoché
+        }
+  };
+
+
+        
+        
+
+        return(
+
+          <>
+          <div className="container">
+            <h1>Inscription</h1>
+
+            <div className="classInput">
+            <label>
+              L'indentifiant :
+              <input type="text" onChange={(e) => setIdentifiant(e.target.value)}/>
+            </label>
+            </div>
+
+
+            <div className="classInput">
+            <label>
+              Mot de passe :
+              <input type="text"/>
+            </label>
+            </div>
+
+
+
+
+
+            <div className="classInput">
+            <label>
+              Date de Naissance :
+              <input type="date" onChange={(e) => setDateNaissance(e.target.value)} />
+            </label>
+            </div>
+
+
+
+
+
+
+            <div className="classInput">
+            <label >Ville :</label>
+            <select   onChange={(e) => setVille(e.target.value)}>
+              <option value="casablanca"  >casablanca</option>
+              <option value="agadir">agadir</option>
+              <option value="rabat">rabat</option>
+              <option value="laayoune" >laayoune</option>
+            </select>
+            </div>
+
+
+          <div className="classInput flex">
+          <div>Genre :</div>
+
+          <div>
+            <label>
+            <input type="radio"  className="inh" />
+            Homme 
+            </label>
+          </div>
+
+          <div>
+            <label>
+            <input type="radio" className="inh" />
+            Femme
+            </label> 
+          </div>
+          </div>
+
+
+
+
+          <div className="classInput flex">
+          <div>Loisirs :</div>  
+
+          <div>
+            <label>
+            <input type="checkbox"  className="inh" value="Sport"
+          checked={MesLoisirs.includes("Sport")}
+          onChange={handleChange} />
+            Sport 
+            </label>
+          </div>
+
+          <div>
+            <label>
+            <input type="checkbox" className="inh"  value="Lecture"
+          checked={MesLoisirs.includes("Lecture")}
+          onChange={handleChange}/>
+            Lecture
+            </label> 
+          </div>
+
+          <div>
+            <label>
+            <input type="checkbox" className="inh" value="Musique"
+          checked={MesLoisirs.includes("Musique")}
+          onChange={handleChange}/>
+            Musique
+            </label> 
+          </div>
+
+          </div>
+
+
+
+
+          <div className="classInput">
+          Photo:
+          <input type="file" accept="image/*" />
+          </div>
+
+
+
+
+          <button onClick={(e) => setIsClicked(true)}>Se connecter</button>
+
+          </div>
+          {IsClicked && <p>je suis {Identifiant} né le {DateNaissance} à {Ville} et mes loisirs sont : {MesLoisirs}
+            </p>}
+          
+          </>
+        )
+      }
+
+
+
+      /* function Title(){
+        return(
+          <h1>Inscription</h1>
+        )
+      }
+
+      function Identifiant(){
+        return(
+          <div className="classInput">
+            <label>
+              L'indentifiant :
+              <input type="text"/>
+            </label>
+          </div>
+        )
+      }
+
+
+      function MotDepasse(){
+        return(
+          <div className="classInput">
+            <label>
+              Mot de passe :
+              <input type="text"/>
+            </label>
+          </div>
+        )
+      }
+
+
+      function DateNaissance(){
+        return(
+          <div className="classInput">
+            <label>
+              Date de Naissance :
+              <input type="date"/>
+            </label>
+          </div>
+        )
+      }
+
+
+
+
+      function Button(){
+        return(
+          <button>Se connecter</button>
+        )
+      }
+
+
+
+
+      function Ville(){
+        return(
+          <div className="classInput">
+            <label for="langage">Ville :</label>
+            <select id="langage" >
+              <option value="casablanca"  >casablanca</option>
+              <option value="agadir">agadir</option>
+              <option value="rabat">rabat</option>
+              <option value="laayoune" selected>laayoune</option>
+            </select>
+          </div>
+        )
+      }
+
+
+      
+      function Genre(){
+       return(
+        <div className="classInput flex">
+          <div>Genre :</div>
+
+          <div>
+            <label>
+            <input type="radio"  className="inh" />
+            Homme 
+            </label>
+          </div>
+
+          <div>
+            <label>
+            <input type="radio" className="inh" />
+            Femme
+            </label> 
+          </div>
+        </div>
+       )
+      }
+
+
+
+
+
+
+     function Loisir(){
+      return(
+        <div className="classInput flex">
+          <div>Loisirs :</div>  
+
+          <div>
+            <label>
+            <input type="checkbox"  className="inh" />
+            Sport 
+            </label>
+          </div>
+
+          <div>
+            <label>
+            <input type="checkbox" className="inh" />
+            Lecture
+            </label> 
+          </div>
+
+          <div>
+            <label>
+            <input type="checkbox" className="inh" />
+            Musique
+            </label> 
+          </div>
+
+        </div>
+      )
+     }
+
+
+
+
+
+     function Download(){
+      return(
+        <div className="classInput">
+          Photo:
+        <input type="file" accept="image/*" />
+        </div>
+      )
+     } */
+
+      function App() {
+        return  (
+          <>
+         {/* <div className="container">
+          <Title/>
+          <Identifiant/>
+          <MotDepasse/>
+          <DateNaissance/>
+          <Ville />
+          <Genre/>
+          <Loisir/>
+          <Download/>
+          <Button/> 
+          </div>*/}
+          
+          
+          
+          <Formulaire/>
+          </>
+        ); 
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
