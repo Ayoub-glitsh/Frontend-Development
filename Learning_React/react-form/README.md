@@ -34,5 +34,5 @@ This project demonstrates how to use React hooks, controlled components, and dyn
 ### 1. Clone this repository
 
 ```bash
-git clone https://github.com//react-formulaire.git
+git clone https://github.com/Ayoub-glitsh/react-formulaire.git
 cd react-formulaire
